@@ -30,6 +30,9 @@
     --light: #dbdbdb;
     --dark: #000;
 }
+body{
+  background: #f1f2f2;
+}
 .flex-cnt{
   display: flex;
   align-items: center;
@@ -47,7 +50,11 @@ align-items: center;
 button{
   background: none;
   border: none;
+  cursor: pointer;
 }
 .grid{
   display: grid;
+}
+.pd-30{
+padding: 0 30px 20px;
 }
