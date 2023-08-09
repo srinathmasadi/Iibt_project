@@ -29,6 +29,9 @@
     --danger: #ff4359;
     --light: #dbdbdb;
     --dark: #000;
+    --animation-delay: 0;
+    --duration: 800ms;
+    --iterations: 1;
 }
 body{
   background: #f1f2f2;
@@ -43,6 +46,9 @@ body{
 }
 .al-cnt{
 align-items: center;
+}
+.al-end{
+  align-items: flex-end;
 }
 .jstfy-cnt{
   justify-content: center;

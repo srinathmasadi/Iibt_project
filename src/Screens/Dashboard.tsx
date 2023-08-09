@@ -6,11 +6,12 @@ const Dashboard = () => {
       <div className="main-container">
         <div className="header">
           <nav className="navbar">
-            <span>logo</span>
+         <img src="https://media1.propertyshare.in/images/logos/property-share-white-logo.svg" alt="" />
             <ul className="nav-ul flex-cnt">
-              <li>Properties</li>
-              <li>Private Access</li>
+              <li><a href="" className="fx">Properties</a></li>
+              <li><a href="" className="fx">Private Access</a></li>
               <li className="flex-cnt">
+                <a href="" className="flex-cnt">
                 Resources
                 <svg
                   width="6"
@@ -24,6 +25,7 @@ const Dashboard = () => {
                     fill="#fff"
                   ></path>
                 </svg>
+                </a>
               </li>
             </ul>
             <div className="buttons flex-cnt">
@@ -114,10 +116,19 @@ const Dashboard = () => {
                     />
                     Outer Ring Road , Bangalore
                   </div>
+                  <div className="property-badge-content">
+                    <div className="property-badge">
+                      <div className="property-badge-sub">
+
+                      </div>
+                      <p>Fully Funded</p>
+                    </div>
+      
+                  </div>
                 </div>
                 <div className="property-img">
                   <img
-                    src="	https://propmedia1.propertyshare.in/website/proper…nner/540x420/1631124574-lodha-ithink-mumbai-1.jpg"
+                    src="https://propmedia2.propertyshare.in/website/property/T29DcmkzY1BtREQvTnlYVnl6cnZCdz09/media-v2/images/listingbanner/540x420/1663762252-preston-uk-united-kingdom-1.jpg"
                     alt=""
                   />
                 </div>
@@ -144,6 +155,16 @@ const Dashboard = () => {
               <div className="pd-30">
               <button className="view-opp">View Opportunity</button>
               </div>
+              </div>
+            </div>
+
+            <div className="map-cont fx">
+              <div className="map-lft">
+               <img src="https://media1.propertyshare.in/images/svg/footer_signup_banner.svg" alt="" />
+              </div>
+              <div className="map-right">
+                <h2>Real Estate Investing Simplified </h2>
+                <button>Sign-up</button>
               </div>
             </div>
           </div>
