@@ -22,6 +22,16 @@
 /* .form-content .input-box input :is(:focus,:active){
     background-color: none !important;
 } */
+.main-auth-c{
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(
+    180deg,
+    rgba(64, 18, 139, 0) 57.29%,
+    rgba(64, 18, 139, 0.4) 100%
+  );
+  mix-blend-mode: multiply;
+}
 .container {
   position: relative;
   min-width: 700px;

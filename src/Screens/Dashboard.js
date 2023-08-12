@@ -114,11 +114,12 @@ const Dashboard = () => {
                 </li>
               </ul>
             </div>
-            {
+      
+                  <div className="prop-cards grid" >
+                  {
               properties?(
                 properties.map((value,index)=>(
-                  <div className="prop-cards grid" key={index}>
-                <div className="card">
+                <div className="card" key={index}>
                   <div className="card-header">
                     <h5>{value.name}</h5>
                     <div className="fx al-cnt address">
@@ -168,10 +169,11 @@ const Dashboard = () => {
                 <button className="view-opp">View Opportunity</button>
                 </div>
                 </div>
-              </div>
+          
                 )) 
               ):<div>Loading</div>
             }
+                </div>
 
             <div className="map-cont fx">
               <div className="map-lft">

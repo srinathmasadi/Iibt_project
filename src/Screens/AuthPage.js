@@ -59,7 +59,8 @@ const AuthPage = () => {
   }
   return (
     <>
-      <div className="container">
+    <div className="main-auth-c flex-cnt">
+    <div className="container">
         <input type="checkbox" id="flip" />
         <div className="cover">
           <div className="front">
@@ -127,7 +128,7 @@ const AuthPage = () => {
               
                     <input
                       type="text"
-                      placeholder=""
+                      placeholder="User name..."
                       onChange = {handleUserName}
                       required
                     />
@@ -151,7 +152,7 @@ const AuthPage = () => {
               
                     <input
                       type="text"
-                      placeholder="Enter your password"
+                      placeholder="Password.."
                       onChange={handlePassword}
                       required
                     />
@@ -210,7 +211,7 @@ const AuthPage = () => {
 
                     <input
                       type="password"
-                      placeholder=""
+                      placeholder="E-mail.."
                       required
                     />
                   </div>
@@ -233,7 +234,7 @@ const AuthPage = () => {
 
                     <input
                       type="password"
-                      placeholder=""
+                      placeholder="Password.."
                       required
                     />
                   </div>
@@ -248,7 +249,7 @@ const AuthPage = () => {
               
                     <input
                       type="text"
-                      placeholder=""
+                      placeholder="re-enter.."
                       required
                     />
                   </div>
@@ -266,6 +267,7 @@ const AuthPage = () => {
           </div>
         </div>
       </div>
+    </div>
     </>
   );
 };
