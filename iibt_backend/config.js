@@ -8,6 +8,7 @@ module.exports = {
         database:"iibtproject_db",
         collections:{
             USERS:"users",
+            PROPERTIES:"properties"
         }
     },
     serverConfig: {

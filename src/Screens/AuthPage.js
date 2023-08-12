@@ -1,6 +1,62 @@
-import React from "react";
+import React,{useEffect,useState} from "react";
+import { AuthenticationService,StorageService } from "../services";
+import { GeneralAction } from '../actions'
+import {useSelector, useDispatch} from 'react-redux';
+import '../Styles/auth.css'
+import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
+  const navigate = useNavigate()
+
+  const { isAppLoading, token } = useSelector(
+    state => state.generalState
+  );
+
+  useEffect(()=>{
+    if(token){
+      navigate('/dashboard')
+    }
+  },[])
+
+  const dispatch = useDispatch();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const signIn = async () => {
+    let user = {
+      username,
+      password,
+    };
+  
+    setIsLoading(true);
+  
+    try {
+      const response = await AuthenticationService.login(user);
+      console.log("Response", response.data);
+      setIsLoading(false);
+      if (response?.status) {
+        await StorageService.setToken(response.data);
+        dispatch(GeneralAction.setToken(response.data));
+        navigate('/dashboard')
+      } else {
+        setErrorMessage(response?.message);
+      }
+    } catch (error) {
+      console.error("Error during login:", error);
+      setErrorMessage("An error occurred during login.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleUserName = (e)=>{
+    setUsername(e.target.value)
+  }
+  const handlePassword = (e)=>{
+    setPassword(e.target.value)
+  }
   return (
     <>
       <div className="container">
@@ -39,7 +95,7 @@ const AuthPage = () => {
             </div>
             <span>Use your credentials to Login!</span>
                 </div> 
-              <form action="#">
+              <div >
                 <div className="input-boxes">
                 <div className="input-box">
                   <svg
@@ -67,11 +123,12 @@ const AuthPage = () => {
                       />
                     </svg>
                   <div>
-                  <label>Enter your email</label>
+                  <label>Enter your username</label>
               
                     <input
                       type="text"
                       placeholder=""
+                      onChange = {handleUserName}
                       required
                     />
                   </div>
@@ -94,7 +151,8 @@ const AuthPage = () => {
               
                     <input
                       type="text"
-                      placeholder=""
+                      placeholder="Enter your password"
+                      onChange={handlePassword}
                       required
                     />
                   </div>
@@ -103,7 +161,7 @@ const AuthPage = () => {
                   <div className="text">
                     <a href="#">Forgot password?</a>
                   </div>
-                  <div className="button input-box">
+                  <div className="button input-box" onClick={()=>signIn()}>
                     <input type="submit" value="Sumbit" />
                   </div>
                   <div className="text sign-up-text">
@@ -111,7 +169,7 @@ const AuthPage = () => {
                     <label htmlFor="flip">Sigup now</label>
                   </div>
                 </div>
-              </form>
+              </div>
             </div>
             <div className="signup-form">
             <div className="title-main">

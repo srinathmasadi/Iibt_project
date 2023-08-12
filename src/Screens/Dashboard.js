@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/dashboard.css";
+import { PropertyService } from "../services";
 const Dashboard = () => {
+  const [properties, setProperties] = useState(null)
+  useEffect(()=>{
+    PropertyService.getProperties().
+      then((response)=>{
+        console.log(response)
+        setProperties(response.data)
+      })
+  },[])
   return (
     <>
       <div className="main-container">
         <div className="header">
           <nav className="navbar">
-            <span>logo</span>
+         <img src="https://media1.propertyshare.in/images/logos/property-share-white-logo.svg" alt="" />
             <ul className="nav-ul flex-cnt">
-              <li>Properties</li>
-              <li>Private Access</li>
+              <li><a href="" className="fx">Properties</a></li>
+              <li><a href="" className="fx">Private Access</a></li>
               <li className="flex-cnt">
+                <a href="" className="flex-cnt">
                 Resources
                 <svg
                   width="6"
@@ -24,12 +34,13 @@ const Dashboard = () => {
                     fill="#fff"
                   ></path>
                 </svg>
+                </a>
               </li>
             </ul>
-            <div className="buttons flex-cnt">
+            {/* <div className="buttons flex-cnt">
               <button>Sign in</button>
               <button>sign up</button>
-            </div>
+            </div> */}
           </nav>
         </div>
         <div className="main-scroll-c">
@@ -103,21 +114,32 @@ const Dashboard = () => {
                 </li>
               </ul>
             </div>
-            <div className="prop-cards grid">
+            {
+              properties.map((value,index)=>(
+                <div className="prop-cards grid" key={index}>
               <div className="card">
                 <div className="card-header">
-                  <h5>Prestige Tech Platina</h5>
+                  <h5>{value.name}</h5>
                   <div className="fx al-cnt address">
                     <img
                       src=" https://media1.propertyshare.in/images/svg/card-location-icon.svg"
                       alt=""
                     />
-                    Outer Ring Road , Bangalore
+                    {value.address}
+                  </div>
+                  <div className="property-badge-content">
+                    <div className="property-badge">
+                      <div className="property-badge-sub">
+
+                      </div>
+                      <p>Fully Funded</p>
+                    </div>
+      
                   </div>
                 </div>
                 <div className="property-img">
                   <img
-                    src="	https://propmedia1.propertyshare.in/website/proper…nner/540x420/1631124574-lodha-ithink-mumbai-1.jpg"
+                    src={`${value.image}`}
                     alt=""
                   />
                 </div>
@@ -129,21 +151,33 @@ const Dashboard = () => {
                     </tr>
                     <tr>
                     <td>Price psf</td>
-                    <td>5456546</td>
+                    <td>{value.price}</td>
                     </tr>
                     <tr>
                     <td>Yield</td>
                     <td>5456546</td>
                     </tr>
                     <tr>
-                    <td>Return Target</td>
-                    <td>5456546</td>
+                    <td>Rent</td>
+                    <td>{value.Rent}</td>
                     </tr>
                   </table>
                 </div>
               <div className="pd-30">
               <button className="view-opp">View Opportunity</button>
               </div>
+              </div>
+            </div>
+              ))
+            }
+
+            <div className="map-cont fx">
+              <div className="map-lft">
+               <img src="https://media1.propertyshare.in/images/svg/footer_signup_banner.svg" alt="" />
+              </div>
+              <div className="map-right">
+                <h2>Real Estate Investing Simplified </h2>
+                <button>Sign-up</button>
               </div>
             </div>
           </div>
