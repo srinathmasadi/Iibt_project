@@ -1,13 +1,60 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    list-style: none;
+  }
+  :root{
+    --blue: #4a77c3;
+    --indigo: #3fc6f3;
+    --purple: #9561e2;
+    --pink: #f66d9b;
+    --red: #ff4359;
+    --orange: #f6993f;
+    --yellow: #ea9a1e;
+    --green: #00d199;
+    --teal: #4dc0b5;
+    --cyan: #689aef;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #000;
+    --primary: #4a77c3;
+    --secondary: #dbdbdb;
+    --success: #00d199;
+    --info: #689aef;
+    --warning: #ea9a1e;
+    --danger: #ff4359;
+    --light: #dbdbdb;
+    --dark: #000;
+}
+body{
+  background: #f1f2f2;
+}
+.flex-cnt{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.fx{
+  display: flex;
+}
+.al-cnt{
+align-items: center;
+}
+.jstfy-cnt{
+  justify-content: center;
+}
+button{
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.grid{
+  display: grid;
+}
+.pd-30{
+padding: 0 30px 20px;
 }
