@@ -114,62 +114,66 @@ const Dashboard = () => {
                 </li>
               </ul>
             </div>
-            {
-              properties.map((value,index)=>(
-                <div className="prop-cards grid" key={index}>
-              <div className="card">
-                <div className="card-header">
-                  <h5>{value.name}</h5>
-                  <div className="fx al-cnt address">
+      
+                  <div className="prop-cards grid" >
+                  {
+              properties?(
+                properties.map((value,index)=>(
+                <div className="card" key={index}>
+                  <div className="card-header">
+                    <h5>{value.name}</h5>
+                    <div className="fx al-cnt address">
+                      <img
+                        src=" https://media1.propertyshare.in/images/svg/card-location-icon.svg"
+                        alt=""
+                      />
+                      {value.address}
+                    </div>
+                    <div className="property-badge-content">
+                      <div className="property-badge">
+                        <div className="property-badge-sub">
+  
+                        </div>
+                        <p>Fully Funded</p>
+                      </div>
+        
+                    </div>
+                  </div>
+                  <div className="property-img">
                     <img
-                      src=" https://media1.propertyshare.in/images/svg/card-location-icon.svg"
+                      src={`${value.image}`}
                       alt=""
                     />
-                    {value.address}
                   </div>
-                  <div className="property-badge-content">
-                    <div className="property-badge">
-                      <div className="property-badge-sub">
-
-                      </div>
-                      <p>Fully Funded</p>
-                    </div>
-      
+                  <div className="property-details">
+                    <table>
+                    <tr>
+                      <td>Area</td>
+                      <td>5456546</td>
+                      </tr>
+                      <tr>
+                      <td>Price psf</td>
+                      <td>{value.price}</td>
+                      </tr>
+                      <tr>
+                      <td>Yield</td>
+                      <td>5456546</td>
+                      </tr>
+                      <tr>
+                      <td>Rent</td>
+                      <td>{value.Rent}</td>
+                      </tr>
+                    </table>
                   </div>
+                <div className="pd-30">
+                <button className="view-opp">View Opportunity</button>
                 </div>
-                <div className="property-img">
-                  <img
-                    src={`${value.image}`}
-                    alt=""
-                  />
                 </div>
-                <div className="property-details">
-                  <table>
-                  <tr>
-                    <td>Area</td>
-                    <td>5456546</td>
-                    </tr>
-                    <tr>
-                    <td>Price psf</td>
-                    <td>{value.price}</td>
-                    </tr>
-                    <tr>
-                    <td>Yield</td>
-                    <td>5456546</td>
-                    </tr>
-                    <tr>
-                    <td>Rent</td>
-                    <td>{value.Rent}</td>
-                    </tr>
-                  </table>
-                </div>
-              <div className="pd-30">
-              <button className="view-opp">View Opportunity</button>
-              </div>
-              </div>
-            </div>
-              ))
+          
+                )) 
+              ):<div>Loading</div>
             }
+                </div>
 
             <div className="map-cont fx">
               <div className="map-lft">
