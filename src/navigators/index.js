@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'; // Use "Routes" here
-import { Navigate } from 'react-router-dom';
+import React, { Fragment, useEffect } from 'react';
+import { Routes, Route, Navigate } from "react-router-dom";
+// import { Navigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { GeneralAction } from '../actions';
 
@@ -11,29 +11,33 @@ const Navigators = () => {
     state => state.generalState
   );
 
-
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(GeneralAction.appStart());
   }, []);
 
+  if (isAppLoading) {
+    return <h1>Loading.......</h1>;
+  }
+
   return (
     <Routes>
-      {token ? (
-        <>
-          {/* If the token is present, redirect from "/" to "/dashboard" */}
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/signin" element={<AuthPage />} />
-        </>
-      ) : (
-        <>
-          {/* If the token is not present, redirect from "/" to "/signin" */}
-          <Route path="/" element={<Navigate to="/signin" />} />
-          <Route path="/signin" element={<AuthPage />} />
-          <Route path="/signup" element={<AuthPage />} />
-        </>
-      )}
+      <Route path="/" element={<AuthPage />} />
+      {/* Conditional rendering for the /dashboard route */}
+      <Route
+        path="/dashboard"
+        element={
+          token ? (
+            <Dashboard />
+          ) : (
+            // If the user doesn't have the token, redirect to /signin
+            <Navigate to="/signin" />
+          )
+        }
+      />
+      <Route path="/signin" element={<AuthPage />} />
     </Routes>
   );
 };
