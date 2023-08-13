@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/dashboard.css";
 import { PropertyService } from "../services";
+import {useDispatch} from 'react-redux';
+import {StorageService} from "../services";
+import { GeneralAction } from "../actions";
 const Dashboard = () => {
   const [properties, setProperties] = useState(null)
+
   useEffect(()=>{
     PropertyService.getProperties().
       then((response)=>{
@@ -10,6 +14,17 @@ const Dashboard = () => {
         setProperties(response.data)
       })
   },[])
+
+  const dispatch = useDispatch();
+  const logout = () => {
+    console.log("then")
+    StorageService.setToken('').then(() => {
+      dispatch(GeneralAction.setToken(''));
+      dispatch(GeneralAction.setUserData(null));
+    }).catch((e)=>{
+      console.log("Hello in error",e)
+    });
+  };
   return (
     <>
       <div className="main-container">
@@ -37,10 +52,10 @@ const Dashboard = () => {
                 </a>
               </li>
             </ul>
-            {/* <div className="buttons flex-cnt">
-              <button>Sign in</button>
-              <button>sign up</button>
-            </div> */}
+            <div className="buttons flex-cnt">
+              {/* <button onClick={() => logout()}>Logout</button> */}
+              {/* <button>sign up</button> */}
+            </div>
           </nav>
         </div>
         <div className="main-scroll-c">
