@@ -4,8 +4,12 @@ import { PropertyService } from "../services";
 import {useDispatch} from 'react-redux';
 import {StorageService} from "../services";
 import { GeneralAction } from "../actions";
+import Admin from "./Modals/Admin";
 const Dashboard = () => {
   const [properties, setProperties] = useState(null)
+  const [openModal, setOpenModal] = useState(false)
+
+
 
   useEffect(()=>{
     PropertyService.getProperties().
@@ -14,6 +18,10 @@ const Dashboard = () => {
         setProperties(response.data)
       })
   },[])
+
+  const handleClick = () => {
+    setOpenModal(!openModal)
+  };
 
   const dispatch = useDispatch();
   const logout = () => {
@@ -27,7 +35,11 @@ const Dashboard = () => {
   };
   return (
     <>
-      <div className="main-container">
+    {openModal && <Admin 
+    openModal={openModal}
+    setOpenModal={setOpenModal}
+    />}
+     <div className="main-container">
         <div className="header">
           <nav className="navbar">
          <img src="https://media1.propertyshare.in/images/logos/property-share-white-logo.svg" alt="" />
@@ -52,9 +64,10 @@ const Dashboard = () => {
                 </a>
               </li>
             </ul>
+        
             <div className="buttons flex-cnt">
               {/* <button onClick={() => logout()}>Logout</button> */}
-              {/* <button>sign up</button> */}
+              <button onClick={handleClick}>Admin</button>
             </div>
           </nav>
         </div>
