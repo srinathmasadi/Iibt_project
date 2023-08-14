@@ -6,10 +6,9 @@ import {StorageService} from "../services";
 import { GeneralAction } from "../actions";
 import Admin from "./Modals/Admin";
 const Dashboard = () => {
+  
   const [properties, setProperties] = useState(null)
   const [openModal, setOpenModal] = useState(false)
-
-
 
   useEffect(()=>{
     PropertyService.getProperties().
