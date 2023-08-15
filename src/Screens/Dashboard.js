@@ -42,7 +42,7 @@ const Dashboard = () => {
      <div className="main-container">
         <div className="header">
           <nav className="navbar">
-         <img src="https://media1.propertyshare.in/images/logos/property-share-white-logo.svg" alt="" />
+<div></div>
             <ul className="nav-ul flex-cnt">
               <li><a href="" className="fx">Properties</a></li>
               <li><a href="" className="fx">Private Access</a></li>
@@ -74,7 +74,7 @@ const Dashboard = () => {
         <div className="main-scroll-c">
           <div className="banner">
             <img
-              src="https://media2.propertyshare.in/images/static_page_banner/propertylist_features.jpg"
+              src="https://res.cloudinary.com/dghqyted6/image/upload/v1692084381/hav_fxifwr.jpg"
               alt=""
             />
             <h1>All Properties</h1>
