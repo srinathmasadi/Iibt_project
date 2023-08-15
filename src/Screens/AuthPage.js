@@ -59,7 +59,11 @@ const AuthPage = () => {
   }
   return (
     <>
-    <div className="main-auth-c flex-cnt">
+    {
+      isLoading?(
+        <h1>Loading...</h1>
+      ):(
+        <div className="main-auth-c flex-cnt">
     <div className="container">
         <input type="checkbox" id="flip" />
         <div className="cover">
@@ -268,6 +272,9 @@ const AuthPage = () => {
         </div>
       </div>
     </div>
+      )
+    }
+    
     </>
   );
 };

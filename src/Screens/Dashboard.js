@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/dashboard.css";
 import { PropertyService } from "../services";
-import {useDispatch} from 'react-redux';
+import {useDispatch,useSelector} from 'react-redux';
 import {StorageService} from "../services";
 import { GeneralAction } from "../actions";
 import Admin from "./Modals/Admin";
 const Dashboard = () => {
   const [properties, setProperties] = useState(null)
   const [openModal, setOpenModal] = useState(false)
-
-
+  const { isAppLoading, userData, isAdmin } = useSelector(
+    state => state.generalState
+  );
 
   useEffect(()=>{
     PropertyService.getProperties().
       then((response)=>{
-        console.log(response)
         setProperties(response.data)
       })
   },[])
@@ -65,10 +65,12 @@ const Dashboard = () => {
               </li>
             </ul>
         
-            <div className="buttons flex-cnt">
+            { isAdmin ? (<div className="buttons flex-cnt">
               {/* <button onClick={() => logout()}>Logout</button> */}
               <button onClick={handleClick}>Admin</button>
-            </div>
+            </div>):null
+              
+            }
           </nav>
         </div>
         <div className="main-scroll-c">

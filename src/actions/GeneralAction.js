@@ -5,7 +5,8 @@ const types = {
   SET_IS_APP_LOADING: 'SET_IS_APP_LOADING',
   SET_TOKEN: 'SET_TOKEN',
   SET_FIRST_TIME_USE: 'SET_FIRST_TIME_USE',
-  SET_USER_DATA: 'SET_USER_DATA'
+  SET_USER_DATA: 'SET_USER_DATA',
+  SET_IS_ADMIN: 'SET_IS_ADMIN'
 };
 
 const setIsAppLoading = (isAppLoading) => ({
@@ -28,6 +29,11 @@ const setUserData = (userData) => ({
   payload: userData
 });
 
+const setIsAdmin = (isAdmin) => ({
+  type: types.SET_IS_ADMIN,
+  payload: isAdmin,
+});
+
 const appStart = () => async (dispatch) => {
   dispatch(setIsAppLoading(true));
 
@@ -46,6 +52,9 @@ const appStart = () => async (dispatch) => {
 
       if (userResponse?.status) {
         dispatch(setUserData(userResponse.data));
+        if(userResponse?.data?.data?.isAdmin){
+          dispatch(setIsAdmin(true));
+        }
       } else if (userResponse?.message === 'TokenExpiredError') {
         const tokenResponse = await AuthenticationService.refreshToken();
 
@@ -68,4 +77,4 @@ const appStart = () => async (dispatch) => {
   dispatch(setIsAppLoading(false));
 };
 
-export default { setIsAppLoading, setToken, types, appStart, setIsFirstTimeUse };
+export default { setIsAppLoading, setToken, types, appStart, setIsFirstTimeUse,setIsAdmin };
