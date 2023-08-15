@@ -34,11 +34,12 @@ const Admin = ({openModal,setOpenModal}) => {
         const file = event.target.files[0];
       const base64 = await convertBase64(file);
       const response = await uploadImageService.uploadImage(base64)
-      if(response){
+      console.log("Image data",response)
+      if(response.status){
         setImage(response.data);
         alert("Image uploaded Successfully");
       } else{
-        console.log("Error in image upload")
+        alert("Upload size exceed");
       }
       } catch (error) {
         console.log('Cannot upload image', error)
@@ -52,8 +53,9 @@ const Admin = ({openModal,setOpenModal}) => {
       // setIsLoading(true)
       try {
         const response = await PropertyService.addProperty(property)
-        console.log("Add property", response.data)
-        // setIsLoading(false);
+        if(response.status){
+          alert(response.message)
+        }
       } catch (error) {
         console.log("Error in adding property data",error)
       }

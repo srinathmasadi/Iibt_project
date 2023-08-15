@@ -4,6 +4,7 @@ const initialState = {
     isAppLoading : true,
     token: '',
     isFirstTimeUse: true,
+    isAdmin: false,
     userData: {}
 }
 
@@ -17,6 +18,8 @@ const GeneralReducer = (state = initialState, action) => {
             return {...state, isFirstTimeUse: action.payload}
         case GeneralAction.types.SET_USER_DATA:
             return {...state, userData: action.payload}
+        case GeneralAction.types.SET_IS_ADMIN:
+            return {...state, isAdmin: action.payload}
         default:
             return state
     } 
