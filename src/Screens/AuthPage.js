@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from "react";
-import { AuthenticationService,StorageService } from "../services";
+import { AuthenticationService,StorageService, UserService} from "../services";
+
 import { GeneralAction } from '../actions'
 import {useSelector, useDispatch} from 'react-redux';
 import '../Styles/auth.css'
@@ -39,6 +40,10 @@ const AuthPage = () => {
       if (response?.status) {
         await StorageService.setToken(response.data);
         dispatch(GeneralAction.setToken(response.data));
+        const userResponse = await UserService.getUserData();
+        if(userResponse?.data?.data?.isAdmin){
+          dispatch(GeneralAction.setIsAdmin(true));
+        }
         navigate('/dashboard')
       } else {
         setErrorMessage(response?.message);

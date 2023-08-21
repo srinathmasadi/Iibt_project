@@ -8,15 +8,14 @@ import Admin from "./Modals/Admin";
 const Dashboard = () => {
   const [properties, setProperties] = useState(null)
   const [openModal, setOpenModal] = useState(false)
-  const { isAppLoading, userData, isAdmin } = useSelector(
-    state => state.generalState
-  );
+  const {isAdmin } = useSelector(state => state.generalState);
 
   useEffect(()=>{
     PropertyService.getProperties().
       then((response)=>{
         setProperties(response.data)
       })
+      console.log("Admin access", isAdmin)
   },[])
 
   const handleClick = () => {

@@ -52,9 +52,9 @@ const appStart = () => async (dispatch) => {
 
       if (userResponse?.status) {
         dispatch(setUserData(userResponse.data));
-        if(userResponse?.data?.data?.isAdmin){
-          dispatch(setIsAdmin(true));
-        }
+        // if(userResponse?.data?.data?.isAdmin){
+        //   dispatch(setIsAdmin(true));
+        // }
       } else if (userResponse?.message === 'TokenExpiredError') {
         const tokenResponse = await AuthenticationService.refreshToken();
 
