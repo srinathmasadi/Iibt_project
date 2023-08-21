@@ -3,7 +3,10 @@ import {useSelector, useDispatch} from 'react-redux';
 import { PropertyService, uploadImageService } from "../../services";
 
 const Admin = ({openModal,setOpenModal}) => {
-
+  const {userData} = useSelector(
+    state => state.generalState
+  );
+  const [username] = useState(userData.data.username)
   const [name, setName] = useState('')
   const [address, setAddress] = useState('')
   const [image, setImage] = useState('')
@@ -11,10 +14,6 @@ const Admin = ({openModal,setOpenModal}) => {
   const [price, setPrice] = useState('')
   const [rent, setRent] = useState('')
   // const [isLoading, setIsLoading] = useState(false);
-
-
-  const [url,setUrl] = useState('')
-  
 
   const convertBase64 = (file)=>{
       return new Promise((resolve, reject)=>{
@@ -48,7 +47,7 @@ const Admin = ({openModal,setOpenModal}) => {
 
     const uploadPropertyData = async()=>{
       let property = {
-        name,address,rent,price,location,image
+        name,address,rent,price,location,image,username
       }
       // setIsLoading(true)
       try {

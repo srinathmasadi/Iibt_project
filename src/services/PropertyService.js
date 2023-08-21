@@ -40,7 +40,8 @@ const getProperties = async () => {
         !property?.image||
         !property?.location||
         !property?.price||
-        !property?.rent){
+        !property?.rent||
+        !property?.userId){
           return {
               status:false, message: "Please fill up all fields"
           }
@@ -51,7 +52,8 @@ const getProperties = async () => {
             image:property.image,
             location:property.location,
             price:property.price,
-            rent:property.rent
+            rent:property.rent,
+            userId:property.userId
        }
        let propertyResponse = await axios.post(
         `${ApiConstants.BACKEND_API.BASE_API_URL}${ApiConstants.BACKEND_API.PROPERTY}/addData`,
